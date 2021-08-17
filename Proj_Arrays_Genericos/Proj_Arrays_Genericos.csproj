@@ -5,4 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Curso_alura_c-\C#_primeira_aula\Modelos\Modelos.csproj" />
+  </ItemGroup>
+
 </Project>
