@@ -7,25 +7,20 @@ namespace Proj_Arrays_Genericos
     {
         static void Main(string[] args)
         {
-            ListadeContaCorrente lista = new ListadeContaCorrente();
+            ListaObject<object> lista = new ListaObject<object>();
 
-            lista.Add(new ContaCorrente("lucas",123,"sô istudante",456,789));
-            lista.Add(new ContaCorrente("pedro", 456, "vagaba", 7789, 9787));
-            lista.Add(new ContaCorrente("pedro", 456, "vagaba", 7789, 9787));
-            lista.Add(new ContaCorrente("pedro", 456, "vagaba", 7789, 9787));
-            lista.Add(new ContaCorrente("pedro", 456, "vagaba", 7789, 9787));
-            lista.Add(new ContaCorrente("pedro", 456, "vagaba", 7789, 9787));
+            ContaCorrente a = new ContaCorrente("lucas", 123, "sô istudante", 456, 789);
+            ContaCorrente b = new ContaCorrente("pedro", 456, "vagaba", 7789, 9787);
+            ContaCorrente c=  new ContaCorrente("paulo", 456, "vagaba", 7789, 9787);
+            ContaCorrente d=  new ContaCorrente("adelaide", 456, "desempregada", 7789, 9787);
+            ContaCorrente e=  new ContaCorrente("pai", 456, "trabalhador", 7789, 9787);
+            ContaCorrente f = new ContaCorrente("chacon", 456, "trabalhador", 7789, 9787);
 
-            lista.remove(new ContaCorrente("lucas", 123, "sô istudante", 456, 789));
+            lista.AddVarios(a,b,c,d,e,f,f);
             lista.imprime();
-            //for (int i = 0; i < contas.Length; i++) 
-            //{
-            //    contas[i] = new ContaCorrente($"conta {i}",123+i,$"profission {i}",456+i,789+i);
-
-            //    contas[i].imprime();
-            //}
-
-            
+            Console.WriteLine("\n\n");
+            lista.remove(f);
+            lista.imprime();
         }
     }
 }

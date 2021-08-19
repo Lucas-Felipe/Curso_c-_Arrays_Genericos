@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Modelos;
+
 
 namespace Proj_Arrays_Genericos
 {
-    public class ListadeContaCorrente
+    public class ListaObject<T>
     {
-        private ContaCorrente[] _lista;
+        private T[] _lista;
         private int _proximo;
 
-        public ListadeContaCorrente()
+        public ListaObject()
         {
-            _lista = new ContaCorrente[] { };
+            _lista = new T[] { };
             _proximo = 0;
         }
 
-        public void Add(ContaCorrente conta)
+        public void Add(T conta)
         {
-            VerificaCapacidade(_proximo+1);
+            VerificaCapacidade(_proximo + 1);
             for (int i = 0; i < _lista.Length; i++)
             {
                 if (conta.Equals(_lista[i]))
@@ -28,22 +28,22 @@ namespace Proj_Arrays_Genericos
                     Console.WriteLine("\nJá existe uma conta igual!");
                     return;
                 }
-                
+
             }
             _lista[_proximo] = conta;
             _proximo++;
-            conta.imprime();
+            Console.WriteLine(conta.ToString());
             Console.WriteLine("\nConta adicionada com sucesso!");
         }
 
         private void VerificaCapacidade(int tamanho)
         {
-            if (_lista.Length>=tamanho)
+            if (_lista.Length >= tamanho)
             {
                 return;
             }
 
-            ContaCorrente[] novoarray = new ContaCorrente[tamanho];
+            T[] novoarray = new T[tamanho];
             for (int i = 0; i < _lista.Length; i++)
             {
                 novoarray[i] = _lista[i];
@@ -51,22 +51,22 @@ namespace Proj_Arrays_Genericos
             _lista = novoarray;
         }
 
-        public void imprime() 
+        public void imprime()
         {
-            for (int i=0;i<_lista.Length;i++)
+            for (int i = 0; i < _lista.Length; i++)
             {
                 if (_lista[i] == null)
                     break;
-                _lista[i].imprime();
+                Console.WriteLine(_lista[i].ToString()); 
             }
         }
 
-        public void remove(ContaCorrente itemexcluido)
+        public void remove(T itemexcluido)
         {
             int indice = -1;
             for (int i = 0; i < _proximo; i++)
             {
-                ContaCorrente atual = _lista[i];
+                T atual = _lista[i];
                 if (atual.Equals(itemexcluido))
                 {
                     indice = i;
@@ -75,23 +75,24 @@ namespace Proj_Arrays_Genericos
             }
 
 
-            for (int i = indice; i < _proximo-1; i++)
+            for (int i = indice; i < _proximo - 1; i++)
             {
                 _lista[i] = _lista[i + 1];
             }
 
             _proximo--;
-            _lista[_proximo] = null;
+            _lista[_proximo] = default;
         }
 
-        public void AddVarios(params ContaCorrente[] contas) 
+        public void AddVarios(params T[] contas)
         {
 
-            foreach (ContaCorrente conta in contas)
+            foreach (T conta in contas)
             {
                 Add(conta);
             }
 
         }
+
     }
 }
